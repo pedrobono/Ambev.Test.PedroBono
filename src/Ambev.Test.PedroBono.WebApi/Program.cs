@@ -1,3 +1,5 @@
+using Ambev.Test.PedroBono.Application;
+using Ambev.Test.PedroBono.IoC;
 using Ambev.Test.PedroBono.ORM;
 using Ambev.Test.PedroBono.ORM.Extentions;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +19,19 @@ builder.Services.AddDbContext<PostgresContext>(options =>
                     b => b.MigrationsAssembly("Ambev.Test.PedroBono.ORM")
                 )
             );
+
+
+builder.RegisterDependencies();
+
+builder.Services.AddAutoMapper(typeof(Program).Assembly, typeof(ApplicationLayer).Assembly);
+
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssemblies(
+        typeof(ApplicationLayer).Assembly,
+        typeof(Program).Assembly
+    );
+});
 
 var app = builder.Build();
 

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@ namespace Ambev.Test.PedroBono.Domain.Common
     public class BaseEntity : IComparable<BaseEntity>
     {
 
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public Task<IEnumerable<ValidationErrorDetail>> ValidateAsync()
         {
