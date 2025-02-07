@@ -1,0 +1,41 @@
+services:
+  Ambev.Test.PedroBono.webapi:
+    image: ${DOCKER_REGISTRY-}ambevtestepedrobonowebapi
+    build:
+      context: .
+      dockerfile: src/Ambev.Test.PedroBono.WebApi/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+    ports:
+      - "8080"
+      - "8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+
+  Ambev.Test.PedroBono.database:
+    container_name: ambev_test_pedrobono_database
+    image: postgres:13
+
+    environment:
+      POSTGRES_DB: developer_evaluation
+      POSTGRES_USER: developer
+      POSTGRES_PASSWORD: developer
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+    volumes:
+        - ./.containers/developer-bd:/var/lib/postgresql/data
+
+    
+
+  Ambev.Test.PedroBono.nosql:
+    container_name: ambev_test_pedrobono_nosql 
+    image: mongo:8.0    
+    environment:
+        MONGO_INITDB_ROOT_USERNAME: developer
+        MONGO_INITDB_ROOT_PASSWORD: developer
+    ports:
+      - "27017"
