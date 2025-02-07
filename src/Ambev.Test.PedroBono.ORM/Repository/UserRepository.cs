@@ -61,6 +61,18 @@ namespace Ambev.Test.PedroBono.ORM.Repository
         }
 
         /// <summary>
+        /// Retrieves a user by their username
+        /// </summary>
+        /// <param name="username">The email address to search for</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>The user if found, null otherwise</returns>
+        public async Task<User?> GetByUsernameAsync(string username, CancellationToken cancellationToken = default)
+        {
+            return await _context.Users
+                .FirstOrDefaultAsync(u => u.Username == username, cancellationToken);
+        }
+
+        /// <summary>
         /// Deletes a user from the database
         /// </summary>
         /// <param name="id">The unique identifier of the user to delete</param>
