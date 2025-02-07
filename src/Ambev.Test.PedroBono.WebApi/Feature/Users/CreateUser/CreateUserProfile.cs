@@ -1,5 +1,6 @@
 ﻿using Ambev.Test.PedroBono.Application.Users.CreateUser;
 using Ambev.Test.PedroBono.Domain.Enums;
+using Ambev.Test.PedroBono.WebApi.Common;
 using AutoMapper;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -22,7 +23,14 @@ namespace Ambev.Test.PedroBono.WebApi.Feature.Users.CreateUser
                 .ForMember(command => command.FirstName, opt => opt.MapFrom(request =>  request.Name.FirstName))
                 .ForMember(command => command.LastName, opt => opt.MapFrom(request =>  request.Name.LastName))
                 ;
-            CreateMap<CreateUserResult, CreateUserResponse>();
+            CreateMap<CreateUserResult, CreateUserResponse>()
+                .ForMember(response => response.Status, opt => opt.MapFrom(result => result.Status.ToString()))
+                .ForMember(response => response.Role, opt => opt.MapFrom(result => result.Role.ToString()))
+                
+                ;
+
+            CreateMap<NameResult, NameRequest>();
+            CreateMap<NameRequest, NameResult>();
         }
     }
 }

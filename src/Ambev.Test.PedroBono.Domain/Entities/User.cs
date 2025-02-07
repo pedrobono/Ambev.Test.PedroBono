@@ -76,22 +76,16 @@ namespace Ambev.Test.PedroBono.Domain.Entities
         public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
-        /// Gets the unique identifier of the user.
-        /// </summary>
-        /// <returns>The user's ID as a string.</returns>
-        string IUser.Id => Id.ToString();
-
-        /// <summary>
-        /// Gets the username.
-        /// </summary>
-        /// <returns>The username.</returns>
-        string IUser.Username => Username;
-
-        /// <summary>
         /// Gets the user's role in the system.
         /// </summary>
         /// <returns>The user's role as a string.</returns>
         string IUser.Role => Role.ToString();
+
+        /// <summary>
+        /// Gets the user's status in the system.
+        /// </summary>
+        /// <returns>The user's status as a string.</returns>
+        string IUser.Status => Status.ToString();
 
         /// <summary>
         /// Initializes a new instance of the User class.

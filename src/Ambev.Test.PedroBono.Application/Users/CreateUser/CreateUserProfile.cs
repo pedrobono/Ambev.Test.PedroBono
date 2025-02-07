@@ -20,7 +20,9 @@ namespace Ambev.Test.PedroBono.Application.Users.CreateUser
         public CreateUserProfile()
         {
             CreateMap<CreateUserCommand, User>();
-            CreateMap<User, CreateUserResult>();
+            CreateMap<User, CreateUserResult>()
+                .ForMember(result => result.Name, opt => opt.MapFrom(user => new NameResult() { FirstName = user.FirstName, LastName = user.LastName}))
+                ;
         }
     }
 }

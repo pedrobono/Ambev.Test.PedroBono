@@ -1,4 +1,5 @@
 ﻿using Ambev.Test.PedroBono.Domain.Enums;
+using Ambev.Test.PedroBono.WebApi.Common;
 
 namespace Ambev.Test.PedroBono.WebApi.Feature.Users.CreateUser
 {
@@ -7,6 +8,12 @@ namespace Ambev.Test.PedroBono.WebApi.Feature.Users.CreateUser
     /// </summary>
     public class CreateUserResponse
     {
+        /// <summary>
+        /// Gets or sets the unique identifier of the newly created user.
+        /// </summary>
+        /// <value>A Id that uniquely identifies the created user in the system.</value>
+        public int Id { get; set; }
+
         /// <summary>
         /// Gets or sets the username. Must be unique and contain only valid characters.
         /// </summary>
@@ -23,6 +30,11 @@ namespace Ambev.Test.PedroBono.WebApi.Feature.Users.CreateUser
         public string Phone { get; set; } = string.Empty;
 
         /// <summary>
+        /// Gets or sets the username. Must be unique and contain only valid characters.
+        /// </summary>
+        public NameRequest Name { get; set; } = new NameRequest();
+
+        /// <summary>
         /// Gets or sets the email address. Must be a valid email format.
         /// </summary>
         public string Email { get; set; } = string.Empty;
@@ -30,12 +42,12 @@ namespace Ambev.Test.PedroBono.WebApi.Feature.Users.CreateUser
         /// <summary>
         /// Gets or sets the initial status of the user account.
         /// </summary>
-        public UserStatus Status { get; set; }
+        public string Status { get; set; }
 
         /// <summary>
         /// Gets or sets the role assigned to the user.
         /// </summary>
-        public UserRole Role { get; set; }
+        public string Role { get; set; }
 
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -43,7 +44,7 @@ namespace Ambev.Test.PedroBono.ORM.Repository
         /// <param name="id">The unique identifier of the user</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>The user if found, null otherwise</returns>
-        public async Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task<User?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
         {
             return await _context.Users.FirstOrDefaultAsync(o => o.Id == id, cancellationToken);
         }
@@ -78,7 +79,7 @@ namespace Ambev.Test.PedroBono.ORM.Repository
         /// <param name="id">The unique identifier of the user to delete</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>True if the user was deleted, false if not found</returns>
-        public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task<bool> DeleteAsync(int id, CancellationToken cancellationToken = default)
         {
             var user = await GetByIdAsync(id, cancellationToken);
             if (user == null)
