@@ -1,4 +1,5 @@
-﻿using Ambev.Test.PedroBono.Application.Users.CreateUser;
+﻿using Ambev.Test.PedroBono.Application.Users;
+using Ambev.Test.PedroBono.Application.Users.CreateUser;
 using Ambev.Test.PedroBono.Domain.Enums;
 using Ambev.Test.PedroBono.WebApi.Common;
 using AutoMapper;
@@ -28,9 +29,6 @@ namespace Ambev.Test.PedroBono.WebApi.Feature.Users.CreateUser
                 .ForMember(response => response.Role, opt => opt.MapFrom(result => result.Role.ToString()))
                 
                 ;
-
-            CreateMap<NameResult, NameRequest>();
-            CreateMap<NameRequest, NameResult>();
         }
     }
 }

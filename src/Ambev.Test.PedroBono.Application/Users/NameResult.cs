@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ambev.Test.PedroBono.Application.Users.CreateUser
+namespace Ambev.Test.PedroBono.Application.Users
 {
     /// <summary>
     /// Represents a common object to use in requests in the system.

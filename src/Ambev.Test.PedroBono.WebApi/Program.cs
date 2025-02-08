@@ -80,10 +80,9 @@ if (app.Environment.IsDevelopment())
     app.ApplyMigrations();
 }
 
-app.UseHttpsRedirection(); 
+app.UseHttpsRedirection();
 
 app.UseAuthentication();
-//app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllers();

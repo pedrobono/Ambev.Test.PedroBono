@@ -4,20 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ambev.Test.PedroBono.Application.Users.CreateUser
+namespace Ambev.Test.PedroBono.Application.Users.GetUser
 {
-
     /// <summary>
-    /// Represents the response returned after successfully creating a new user.
+    /// Represents the response returned after get a user by an ID.
     /// </summary>
     /// <remarks>
-    /// This response contains the unique identifier of the newly created user,
+    /// This response contains the unique identifier of an user,
     /// which can be used for subsequent operations or reference.
     /// </remarks>
-    public class CreateUserResult
+    public class GetUserResult
     {
         /// <summary>
-        /// Gets or sets the unique identifier of the newly created user.
+        /// Gets or sets the unique identifier of an User.
         /// </summary>
         /// <value>A Id that uniquely identifies the created user in the system.</value>
         public int Id { get; set; }
@@ -28,7 +27,7 @@ namespace Ambev.Test.PedroBono.Application.Users.CreateUser
         public string Username { get; set; } = string.Empty;
 
         /// <summary>
-        /// Gets or sets the name. Must be unique and contain only valid characters.
+        /// Gets or sets the Name. Must be unique and contain only valid characters.
         /// </summary>
         public NameResult Name { get; set; } = new NameResult();
 
@@ -58,6 +57,5 @@ namespace Ambev.Test.PedroBono.Application.Users.CreateUser
         /// </summary>
         /// <example>(enum: Customer, Manager, Admin)</example>
         public string Role { get; set; }
-
     }
 }
