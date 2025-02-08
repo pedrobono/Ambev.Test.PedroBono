@@ -3,10 +3,14 @@ using Ambev.Test.PedroBono.WebApi.Common;
 using Ambev.Test.PedroBono.WebApi.Feature.Users.CreateUser;
 using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ambev.Test.PedroBono.WebApi.Feature.Users
 {
+    /// <summary>
+    /// Controller for authentication operations
+    /// </summary>
     public class UsersController : BaseController
     {
         private readonly IMediator _mediator;

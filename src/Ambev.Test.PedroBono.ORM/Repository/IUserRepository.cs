@@ -30,15 +30,7 @@ namespace Ambev.Test.PedroBono.ORM.Repository
         /// <param name="email">The email address to search for</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>The user if found, null otherwise</returns>
-        Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Retrieves a user by their username
-        /// </summary>
-        /// <param name="username">The email address to search for</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>The user if found, null otherwise</returns>
-        Task<User?> GetByUsernameAsync(string username, CancellationToken cancellationToken = default);
+        Task<User?> GetByEmailOrUsernameAsync(string email, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Deletes a user from the repository
