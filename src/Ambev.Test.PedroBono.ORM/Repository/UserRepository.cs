@@ -52,25 +52,13 @@ namespace Ambev.Test.PedroBono.ORM.Repository
         /// <summary>
         /// Retrieves a user by their email address
         /// </summary>
-        /// <param name="email">The email address to search for</param>
+        /// <param name="emailUsername">The email address or username to search for</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>The user if found, null otherwise</returns>
-        public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
+        public async Task<User?> GetByEmailOrUsernameAsync(string emailUsername, CancellationToken cancellationToken = default)
         {
             return await _context.Users
-                .FirstOrDefaultAsync(u => u.Email == email, cancellationToken);
-        }
-
-        /// <summary>
-        /// Retrieves a user by their username
-        /// </summary>
-        /// <param name="username">The email address to search for</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>The user if found, null otherwise</returns>
-        public async Task<User?> GetByUsernameAsync(string username, CancellationToken cancellationToken = default)
-        {
-            return await _context.Users
-                .FirstOrDefaultAsync(u => u.Username == username, cancellationToken);
+                .FirstOrDefaultAsync(u => (u.Email == emailUsername || u.Username == emailUsername), cancellationToken);
         }
 
         /// <summary>

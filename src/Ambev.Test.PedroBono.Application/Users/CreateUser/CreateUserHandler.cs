@@ -44,13 +44,13 @@ namespace Ambev.Test.PedroBono.Application.Users.CreateUser
             if (!validationResult.IsValid)
                 throw new ValidationException(validationResult.Errors);
 
-            var existingUser = await _userRepository.GetByEmailAsync(command.Email, cancellationToken);
-            if (existingUser != null)
-                throw new InvalidOperationException($"User with email {command.Email} already exists");
+            var existingUser = await _userRepository.GetByEmailOrUsernameAsync(command.Email, cancellationToken);
 
-            existingUser = await _userRepository.GetByUsernameAsync(command.Email, cancellationToken);
             if (existingUser != null)
-                throw new InvalidOperationException($"User with username {command.Username} already exists");
+                if (command.Email == existingUser.Email)
+                    throw new InvalidOperationException($"User with email {command.Email} already exists");
+            else
+                    throw new InvalidOperationException($"User with UserName {command.Username} already exists");
 
             var user = _mapper.Map<User>(command);
             user.Password = _passwordHasher.HashPassword(command.Password);

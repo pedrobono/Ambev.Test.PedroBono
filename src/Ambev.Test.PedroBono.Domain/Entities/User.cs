@@ -1,4 +1,5 @@
-﻿using Ambev.Test.PedroBono.Common.Validation;
+﻿using Ambev.Test.PedroBono.Common.Security;
+using Ambev.Test.PedroBono.Common.Validation;
 using Ambev.Test.PedroBono.Domain.Common;
 using Ambev.Test.PedroBono.Domain.Enums;
 using Ambev.Test.PedroBono.Domain.Validation;
