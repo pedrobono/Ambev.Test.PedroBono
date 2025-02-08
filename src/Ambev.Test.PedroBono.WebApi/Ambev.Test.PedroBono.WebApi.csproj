@@ -31,7 +31,6 @@
 
 	<ItemGroup>
 		<Folder Include="Feature\Users\DeleteUser\" />
-		<Folder Include="Feature\Users\GetUser\" />
 		<Folder Include="Feature\Users\ListUser\" />
 		<Folder Include="Feature\Users\UpdateUser\" />
 	</ItemGroup>
