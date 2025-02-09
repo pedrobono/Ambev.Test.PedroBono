@@ -1,4 +1,4 @@
-﻿using Ambev.Test.PedroBono.Application.Users;
+﻿using Ambev.Test.PedroBono.Application.Common.Name;
 using Ambev.Test.PedroBono.WebApi.Common;
 using AutoMapper;
 

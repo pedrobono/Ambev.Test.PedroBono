@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ambev.Test.PedroBono.Application.Common.Name;
 
 namespace Ambev.Test.PedroBono.Application.Users.GetUser
 {

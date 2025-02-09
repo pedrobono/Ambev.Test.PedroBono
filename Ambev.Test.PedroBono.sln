@@ -23,17 +23,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{854A8E70-3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{BC14CA86-8E88-421C-8D6A-10298472FEBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ambev.Test.PedroBono.Domain", "src\Ambev.Test.PedroBono.Domain\Ambev.Test.PedroBono.Domain.csproj", "{8C14BDC6-C04C-4E45-9A98-55F7B38193D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ambev.Test.PedroBono.Domain", "src\Ambev.Test.PedroBono.Domain\Ambev.Test.PedroBono.Domain.csproj", "{8C14BDC6-C04C-4E45-9A98-55F7B38193D4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Crosscutting", "Crosscutting", "{F8C0689D-3126-4F89-8081-21762F03C553}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ambev.Test.PedroBono.Common", "src\Ambev.Test.PedroBono.Common\Ambev.Test.PedroBono.Common.csproj", "{F0018364-86C4-4EEE-87DD-2245C66EB2CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ambev.Test.PedroBono.Common", "src\Ambev.Test.PedroBono.Common\Ambev.Test.PedroBono.Common.csproj", "{F0018364-86C4-4EEE-87DD-2245C66EB2CA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aplication", "Aplication", "{3A213FC9-F17D-4929-9EEA-140F311EBFFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ambev.Test.PedroBono.Application", "src\Ambev.Test.PedroBono.Application\Ambev.Test.PedroBono.Application.csproj", "{ADDAAFD5-8A86-43FE-BDC2-7A1982B9EBB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ambev.Test.PedroBono.Application", "src\Ambev.Test.PedroBono.Application\Ambev.Test.PedroBono.Application.csproj", "{ADDAAFD5-8A86-43FE-BDC2-7A1982B9EBB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ambev.Test.PedroBono.IoC", "src\Ambev.Test.PedroBono.IoC\Ambev.Test.PedroBono.IoC.csproj", "{0E5CEB14-EC06-4F33-AD2A-D0E1C83D16D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ambev.Test.PedroBono.IoC", "src\Ambev.Test.PedroBono.IoC\Ambev.Test.PedroBono.IoC.csproj", "{0E5CEB14-EC06-4F33-AD2A-D0E1C83D16D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

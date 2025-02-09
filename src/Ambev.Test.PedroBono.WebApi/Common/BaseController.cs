@@ -33,8 +33,7 @@ namespace Ambev.Test.PedroBono.WebApi.Common
                     Data = pagedList,
                     CurrentPage = pagedList.CurrentPage,
                     TotalPages = pagedList.TotalPages,
-                    TotalCount = pagedList.TotalCount,
-                    Success = true
+                    TotalCount = pagedList.TotalCount
                 });
     }
 }
