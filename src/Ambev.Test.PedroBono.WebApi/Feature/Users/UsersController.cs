@@ -129,7 +129,15 @@ namespace Ambev.Test.PedroBono.WebApi.Feature.Users
             {
                 var response = await _mediator.Send(command, cancellationToken);
 
-                return OkPaginated(new PaginatedList<GetUserResponse>(_mapper.Map<List<GetUserResponse>>(response.Data), response.TotalCount, response.CurrentPage, response.PageSize));
+                var test = _mapper.Map<PaginatedList<GetUserResponse>>(response);
+
+                return Ok(new ApiResponseWithData<PaginatedList<GetUserResponse>>
+                {
+                    Success = true,
+                    Message = "User's retrieved successfully",
+                    Data = test
+                });
+
             }
             catch (Exception e)
             {

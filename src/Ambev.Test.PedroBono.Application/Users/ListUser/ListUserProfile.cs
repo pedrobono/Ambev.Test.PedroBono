@@ -21,7 +21,7 @@ namespace Ambev.Test.PedroBono.Application.Users.ListUser
         {
             CreateMap<ListUserCommand, PaginedFilter>();
             CreateMap<PaginatedResult<User>, ListUserResult>()
-                .ForMember(result => result.Data, opt => opt.MapFrom(list => list)); ;
+                .ForMember(result => result.Data, opt => opt.MapFrom(list => list));
         }
     }
 }
