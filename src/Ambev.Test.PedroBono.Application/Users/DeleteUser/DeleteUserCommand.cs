@@ -1,22 +1,21 @@
 ﻿using MediatR;
 
-namespace Ambev.Test.PedroBono.Application.Users.GetUser
+namespace Ambev.Test.PedroBono.Application.Users.DeleteUser
 {
     /// <summary>
-    /// Command for geting a user.
+    /// Command for creating a delete user.
     /// </summary>
     /// <remarks>
-    /// This command is used to capture the required data for a user, 
-    /// including username, password, phone number, email, status, and role. 
+    /// This command is used to delete a user, 
     /// It implements <see cref="IRequest{TResponse}"/> to initiate the request 
-    /// that returns a <see cref="GetUserResult"/>.
+    /// that returns a <see cref="DeleteUserResult"/>.
     /// 
     /// The data provided in this command is validated using the 
-    /// <see cref="CreateUserCommandValidator"/> which extends 
+    /// <see cref="DeleteUserCommandValidator"/> which extends 
     /// <see cref="AbstractValidator{T}"/> to ensure that the fields are correctly 
     /// populated and follow the required rules.
     /// </remarks>
-    public class GetUserCommand : IRequest<GetUserResult>
+    public class DeleteUserCommand : IRequest<DeleteUserResult>
     {
         /// <summary>
         /// The unique identifier of the user to retrieve
@@ -24,10 +23,10 @@ namespace Ambev.Test.PedroBono.Application.Users.GetUser
         public int Id { get; }
 
         /// <summary>
-        /// Initializes a new instance of GetUserCommand
+        /// Initializes a new instance of DeleteUserCommand
         /// </summary>
         /// <param name="id">The ID of the user to retrieve</param>
-        public GetUserCommand(int id)
+        public DeleteUserCommand(int id)
         {
             Id = id;
         }
