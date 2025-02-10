@@ -1,9 +1,11 @@
 ﻿using Ambev.Test.PedroBono.Application.Users.CreateUser;
+using Ambev.Test.PedroBono.Application.Users.DeleteUser;
 using Ambev.Test.PedroBono.Application.Users.GetUser;
 using Ambev.Test.PedroBono.Application.Users.ListUser;
 using Ambev.Test.PedroBono.Application.Users.UpdateUser;
 using Ambev.Test.PedroBono.WebApi.Common;
 using Ambev.Test.PedroBono.WebApi.Feature.Users.CreateUser;
+using Ambev.Test.PedroBono.WebApi.Feature.Users.DeleteUser;
 using Ambev.Test.PedroBono.WebApi.Feature.Users.GetUser;
 using Ambev.Test.PedroBono.WebApi.Feature.Users.ListUser;
 using Ambev.Test.PedroBono.WebApi.Feature.Users.UpdateUser;
@@ -148,7 +150,7 @@ namespace Ambev.Test.PedroBono.WebApi.Feature.Users
         }
 
         /// <summary>
-        /// Updates a new user
+        /// Updates a user
         /// </summary>
         /// <param name="request">The user update request</param>
         /// <param name="id">A Id that uniquely identifies the Updated user in the system.</param>
@@ -172,9 +174,47 @@ namespace Ambev.Test.PedroBono.WebApi.Feature.Users
             return Ok(new ApiResponseWithData<UpdateUserResponse>
             {
                 Success = true,
-                Message = "User Updated successfully",
+                Message = "User updated successfully",
                 Data = _mapper.Map<UpdateUserResponse>(response)
             });
+        }
+
+        /// <summary>
+        /// Delete a user by their ID
+        /// </summary>
+        /// <param name="id">The unique identifier of the user</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>The user details if the User is Deleted or Inactive</returns>
+        [HttpDelete("{id}")]
+        [ProducesResponseType(typeof(ApiResponseWithData<DeleteUserResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> DeleteUser([FromRoute] int id, CancellationToken cancellationToken)
+        {
+            var request = new DeleteUserRequest { Id = id };
+            var validator = new DeleteUserRequestValidator();
+            var validationResult = await validator.ValidateAsync(request, cancellationToken);
+
+            if (!validationResult.IsValid)
+                return BadRequest(validationResult.Errors);
+
+            var command = _mapper.Map<DeleteUserCommand>(request.Id);
+
+            try
+            {
+                var response = await _mediator.Send(command, cancellationToken);
+
+                return Ok(new ApiResponseWithData<DeleteUserResponse>
+                {
+                    Success = true,
+                    Message = "User deleted successfully",
+                    Data = _mapper.Map<DeleteUserResponse>(response)
+                });
+            }
+            catch (Exception e)
+            {
+                return NotFound(e.Message);
+            }
         }
 
     }

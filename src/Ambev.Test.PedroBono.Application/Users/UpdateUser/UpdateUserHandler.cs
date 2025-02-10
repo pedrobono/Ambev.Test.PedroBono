@@ -50,6 +50,10 @@ namespace Ambev.Test.PedroBono.Application.Users.UpdateUser
             existingUser = await _userRepository.GetByEmailOrUsernameAsync(command.Username, cancellationToken);
             ValidateExistingUser(command, existingUser);
 
+            existingUser = await _userRepository.GetByIdAsync(command.Id, cancellationToken);
+
+            if (existingUser == null)
+                throw new KeyNotFoundException($"User with ID {command.Id} not found");
 
             var user = _mapper.Map<User>(command);
             user.Password = _passwordHasher.HashPassword(command.Password);
