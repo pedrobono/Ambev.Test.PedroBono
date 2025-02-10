@@ -19,7 +19,8 @@ namespace Ambev.Test.PedroBono.Application.Users.UpdateUser
         /// </summary>
         public UpdateUserProfile()
         {
-            CreateMap<UpdateUserCommand, User>();
+            CreateMap<UpdateUserCommand, User>()
+                .ForMember(result => result.Address, opt => opt.Ignore());
             CreateMap<User, UpdateUserResult>()
                 .ForMember(result => result.Name, opt => opt.MapFrom(user => user))
                 ;

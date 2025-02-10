@@ -1,5 +1,6 @@
 ﻿using Ambev.Test.PedroBono.Domain.Enums;
 using Ambev.Test.PedroBono.WebApi.Common;
+using Ambev.Test.PedroBono.WebApi.Feature.Users.CreateAddress;
 
 namespace Ambev.Test.PedroBono.WebApi.Feature.Users.CreateUser
 {   
@@ -17,6 +18,11 @@ namespace Ambev.Test.PedroBono.WebApi.Feature.Users.CreateUser
         /// Gets or sets the username. Must be unique and contain only valid characters.
         /// </summary>
         public NameRequest Name { get; set; } = new NameRequest();
+
+        /// <summary>
+        /// Gets or sets the Adress.
+        /// </summary>
+        public CreateAddressRequest Address { get; set; } = new CreateAddressRequest();
 
         /// <summary>
         /// Gets or sets the password. Must meet security requirements.

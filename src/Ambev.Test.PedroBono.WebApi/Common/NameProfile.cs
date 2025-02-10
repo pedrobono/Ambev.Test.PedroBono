@@ -1,8 +1,7 @@
 ﻿using Ambev.Test.PedroBono.Application.Common.Name;
-using Ambev.Test.PedroBono.WebApi.Common;
 using AutoMapper;
 
-namespace Ambev.Test.PedroBono.WebApi.Feature.Users
+namespace Ambev.Test.PedroBono.WebApi.Common
 {
     /// <summary>
     /// Profile for mapping between Application and API responses
@@ -14,8 +13,7 @@ namespace Ambev.Test.PedroBono.WebApi.Feature.Users
         /// </summary>
         public NameProfile()
         {
-            CreateMap<NameResult, NameRequest>();
-            CreateMap<NameRequest, NameResult>();
+            CreateMap<NameResult, NameResponse>();
         }
     }
 }

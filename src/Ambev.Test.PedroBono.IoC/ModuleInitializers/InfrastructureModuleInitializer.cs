@@ -17,6 +17,7 @@ namespace Ambev.Test.PedroBono.IoC.ModuleInitializers
         {
             builder.Services.AddScoped<DbContext>(provider => provider.GetRequiredService<PostgresContext>());
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IAddressRepository, AddressRepository>();
         }
     }
 }

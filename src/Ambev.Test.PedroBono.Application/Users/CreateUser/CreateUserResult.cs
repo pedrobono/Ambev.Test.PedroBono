@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ambev.Test.PedroBono.Application.Common.Name;
+using Ambev.Test.PedroBono.Application.Users.CreateAddress;
 
 namespace Ambev.Test.PedroBono.Application.Users.CreateUser
 {
@@ -32,6 +33,11 @@ namespace Ambev.Test.PedroBono.Application.Users.CreateUser
         /// Gets or sets the name. Must be unique and contain only valid characters.
         /// </summary>
         public NameResult Name { get; set; } = new NameResult();
+
+        /// <summary>
+        /// Gets or sets the Adress.
+        /// </summary>
+        public CreateAddressResult Address { get; set; } = new CreateAddressResult();
 
         /// <summary>
         /// Gets or sets the password. Must meet security requirements.
