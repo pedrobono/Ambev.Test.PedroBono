@@ -48,5 +48,6 @@ namespace Ambev.Test.PedroBono.ORM.Repository
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<PaginatedResult<User>?> ListPaginatedAsync(PaginedFilter request, CancellationToken cancellationToken);
+        Task<User> UpdateAsync(User user, CancellationToken cancellationToken = default);
     }
 }

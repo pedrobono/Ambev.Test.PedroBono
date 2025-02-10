@@ -80,6 +80,14 @@ namespace Ambev.Test.PedroBono.ORM.Repository
             return true;
         }
 
+        public async Task<User> UpdateAsync(User user, CancellationToken cancellationToken = default)
+        {
+            _context.ChangeTracker.Clear();
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync(cancellationToken);
+            return user;
+        }
+
         public async Task<PaginatedResult<User>?> ListPaginatedAsync(PaginedFilter request, CancellationToken cancellationToken)
         {
             var count = await _context.Users.CountAsync(cancellationToken);

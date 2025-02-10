@@ -3,15 +3,15 @@ using Ambev.Test.PedroBono.Domain.Validation;
 using Ambev.Test.PedroBono.WebApi.Common;
 using FluentValidation;
 
-namespace Ambev.Test.PedroBono.WebApi.Feature.Users.CreateUser
+namespace Ambev.Test.PedroBono.WebApi.Feature.Users.UpdateUser
 {
     /// <summary>
-    /// Validator for CreateUserRequest that defines validation rules for user creation.
+    /// Validator for UpdateUserRequest that defines validation rules for user creation.
     /// </summary>
-    public class CreateUserRequestValidator : AbstractValidator<CreateUserRequest>
+    public class UpdateUserRequestValidator : AbstractValidator<UpdateUserRequest>
     {
         /// <summary>
-        /// Initializes a new instance of the CreateUserRequestValidator with defined validation rules.
+        /// Initializes a new instance of the UpdateUserRequestValidator with defined validation rules.
         /// </summary>
         /// <remarks>
         /// Validation rules include:
@@ -23,7 +23,7 @@ namespace Ambev.Test.PedroBono.WebApi.Feature.Users.CreateUser
         /// - Role: Required, length between 5 and 8 characters
         /// - Name: Cannot be Empty
         /// </remarks>
-        public CreateUserRequestValidator()
+        public UpdateUserRequestValidator()
         {
             RuleFor(user => user.Email).SetValidator(new EmailValidator());
             RuleFor(user => user.Username).NotEmpty().Length(3, 50);
@@ -32,6 +32,8 @@ namespace Ambev.Test.PedroBono.WebApi.Feature.Users.CreateUser
             RuleFor(user => user.Status).NotEmpty().IsEnumName(typeof(UserStatus), true).WithMessage("Status is not recognized by the system");
             RuleFor(user => user.Role).NotEmpty().IsEnumName(typeof(UserRole), true).WithMessage("Role is not recognized by the system");
             RuleFor(user => user.Name).SetValidator(new NameRequestValidator());
+            RuleFor(user => user.Id).NotEmpty().NotNull()
+                .WithMessage("User ID is required");
         }
     }
 }

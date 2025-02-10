@@ -10,13 +10,13 @@ namespace Ambev.Test.PedroBono.WebApi.Common
     public class BaseController : ControllerBase
     {
         protected int GetCurrentUserId() =>
-                int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? throw new NullReferenceException());
+            int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? throw new NullReferenceException());
 
         protected string GetCurrentUserEmail() =>
             User.FindFirst(ClaimTypes.Email)?.Value ?? throw new NullReferenceException();
 
         protected IActionResult Ok<T>(T data) =>
-                base.Ok(data);
+            base.Ok(data);
 
         protected IActionResult Created<T>(string routeName, object routeValues, T data) =>
             base.CreatedAtRoute(routeName, routeValues, new ApiResponseWithData<T> { Data = data, Success = true });
