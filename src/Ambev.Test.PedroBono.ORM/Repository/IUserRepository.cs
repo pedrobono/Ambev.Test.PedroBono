@@ -1,4 +1,5 @@
 ﻿using Ambev.Test.PedroBono.Domain.Entities;
+using Ambev.Test.PedroBono.ORM.Common;
 using System.Numerics;
 
 namespace Ambev.Test.PedroBono.ORM.Repository
@@ -39,5 +40,13 @@ namespace Ambev.Test.PedroBono.ORM.Repository
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>True if the user was deleted, false if not found</returns>
         Task<bool> DeleteAsync(int id, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Select all te Users from the repository based on the filter
+        /// </summary>
+        /// <param name="request">The filter used in the query including page, size and order</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<PaginatedResult<User>?> ListPaginatedAsync(PaginedFilter request, CancellationToken cancellationToken);
     }
 }

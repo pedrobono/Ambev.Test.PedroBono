@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ambev.Test.PedroBono.Application.Users
+namespace Ambev.Test.PedroBono.Application.Common.Name
 {
     /// <summary>
     /// AutoMapper profile for authentication-related mappings

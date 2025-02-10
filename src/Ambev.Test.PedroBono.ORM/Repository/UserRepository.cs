@@ -1,8 +1,10 @@
 ﻿using Ambev.Test.PedroBono.Domain.Entities;
+using Ambev.Test.PedroBono.ORM.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,5 +79,49 @@ namespace Ambev.Test.PedroBono.ORM.Repository
             await _context.SaveChangesAsync(cancellationToken);
             return true;
         }
+
+        public async Task<PaginatedResult<User>?> ListPaginatedAsync(PaginedFilter request, CancellationToken cancellationToken)
+        {
+            var count = await _context.Users.CountAsync(cancellationToken);
+            var usersQueryable = _context.Users.AsQueryable();
+
+            var conditions = request.Order.Split(',');
+            int qtyConditions = 0;
+
+            foreach (var condition in conditions)
+            {
+                var fieldAndOrder = condition.TrimStart().TrimEnd().Split(" ");
+                var field = fieldAndOrder[0];
+                var order = fieldAndOrder[1];
+
+                if (order.ToLower() == "desc")
+                    if (qtyConditions > 0)
+                        usersQueryable = ((IOrderedQueryable<User>)usersQueryable).ThenByDescending(GetKeySelector(field));
+                    else
+                        usersQueryable = usersQueryable.OrderByDescending(GetKeySelector(field));
+                else
+                    if (qtyConditions > 0)
+                        usersQueryable = ((IOrderedQueryable<User>)usersQueryable).ThenBy(GetKeySelector(field));
+                    else
+                        usersQueryable = usersQueryable.OrderBy(GetKeySelector(field));
+
+                qtyConditions++;
+            }
+
+            var items = await usersQueryable.Skip((request.Page - 1) * request.Size).Take(request.Size).ToListAsync();
+            return new PaginatedResult<User>(items, count, request.Page, request.Size);
+        }
+
+        private static Expression<Func<User, object>> GetKeySelector(string field) => field.ToLower().Trim() switch
+        {
+            "username" => user => user.Username,
+            "email" => user => user.Email,
+            "firstname" => user => user.FirstName,
+            "lastname" => user => user.LastName,
+            "phone" => User => User.Phone,
+            "role" => user => user.Role,
+            "status" => user => user.Status,
+            _ => user => user.Id
+        };
     }
 }
