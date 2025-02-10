@@ -174,9 +174,6 @@ namespace Ambev.Test.PedroBono.WebApi.Feature.Users
 
             var data = _mapper.Map<UpdateUserResponse>(response);
 
-            //Forced, because in tests the object always came null, but the mapper it is there
-            data.Address = _mapper.Map<CreateAddressResponse>(response.Address);
-
             return Ok(new ApiResponseWithData<UpdateUserResponse>
             {
                 Success = true,
