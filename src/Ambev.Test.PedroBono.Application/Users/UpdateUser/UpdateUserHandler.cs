@@ -14,6 +14,7 @@ namespace Ambev.Test.PedroBono.Application.Users.UpdateUser
     public class UpdateUserHandler : IRequestHandler<UpdateUserCommand, UpdateUserResult>
     {
         private readonly IUserRepository _userRepository;
+        private readonly IAddressRepository _addressRepository;
         private readonly IMapper _mapper;
         private readonly IPasswordHasher _passwordHasher;
 
@@ -23,11 +24,12 @@ namespace Ambev.Test.PedroBono.Application.Users.UpdateUser
         /// <param name="userRepository">The user repository</param>
         /// <param name="mapper">The AutoMapper instance</param>
         /// <param name="validator">The validator for UpdateUserCommand</param>
-        public UpdateUserHandler(IUserRepository userRepository, IMapper mapper, IPasswordHasher passwordHasher)
+        public UpdateUserHandler(IUserRepository userRepository, IMapper mapper, IPasswordHasher passwordHasher, IAddressRepository addressRepository)
         {
             _userRepository = userRepository;
             _mapper = mapper;
             _passwordHasher = passwordHasher;
+            _addressRepository = addressRepository;
         }
 
         /// <summary>
@@ -59,6 +61,12 @@ namespace Ambev.Test.PedroBono.Application.Users.UpdateUser
             user.Password = _passwordHasher.HashPassword(command.Password);
 
             var UpdatedUser = await _userRepository.UpdateAsync(user, cancellationToken);
+            command.Address.UserId = UpdatedUser.Id;
+
+            var address = _mapper.Map<Address>(command.Address);
+
+            var createdAdress = await _addressRepository.CreateAsync(address);
+            UpdatedUser.Address = createdAdress;
             var result = _mapper.Map<UpdateUserResult>(UpdatedUser);
             return result;
         }

@@ -1,5 +1,6 @@
 ﻿using Ambev.Test.PedroBono.Domain.Enums;
 using Ambev.Test.PedroBono.WebApi.Common;
+using Ambev.Test.PedroBono.WebApi.Feature.Users.CreateAddress;
 
 namespace Ambev.Test.PedroBono.WebApi.Feature.Users.UpdateUser
 {
@@ -32,7 +33,12 @@ namespace Ambev.Test.PedroBono.WebApi.Feature.Users.UpdateUser
         /// <summary>
         /// Gets or sets the username. Must be unique and contain only valid characters.
         /// </summary>
-        public NameRequest Name { get; set; } = new NameRequest();
+        public NameResponse Name { get; set; } = new NameResponse();
+
+        /// <summary>
+        /// Gets or sets the Adress.
+        /// </summary>
+        public CreateAddressResponse Address { get; set; } = new CreateAddressResponse();
 
         /// <summary>
         /// Gets or sets the email address. Must be a valid email format.

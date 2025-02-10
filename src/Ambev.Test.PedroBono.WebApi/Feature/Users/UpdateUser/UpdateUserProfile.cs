@@ -28,6 +28,7 @@ namespace Ambev.Test.PedroBono.WebApi.Feature.Users.UpdateUser
             CreateMap<UpdateUserResult, UpdateUserResponse>()
                 .ForMember(response => response.Status, opt => opt.MapFrom(result => result.Status.ToString()))
                 .ForMember(response => response.Role, opt => opt.MapFrom(result => result.Role.ToString()))
+                .ForMember(response => response.Address, opt => opt.MapFrom(result => result.Address))
                 
                 ;
         }

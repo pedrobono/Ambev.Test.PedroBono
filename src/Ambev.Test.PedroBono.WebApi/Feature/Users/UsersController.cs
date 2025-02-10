@@ -4,6 +4,7 @@ using Ambev.Test.PedroBono.Application.Users.GetUser;
 using Ambev.Test.PedroBono.Application.Users.ListUser;
 using Ambev.Test.PedroBono.Application.Users.UpdateUser;
 using Ambev.Test.PedroBono.WebApi.Common;
+using Ambev.Test.PedroBono.WebApi.Feature.Users.CreateAddress;
 using Ambev.Test.PedroBono.WebApi.Feature.Users.CreateUser;
 using Ambev.Test.PedroBono.WebApi.Feature.Users.DeleteUser;
 using Ambev.Test.PedroBono.WebApi.Feature.Users.GetUser;
@@ -83,7 +84,7 @@ namespace Ambev.Test.PedroBono.WebApi.Feature.Users
                 return BadRequest(validationResult.Errors);
 
             var command = _mapper.Map<GetUserCommand>(request.Id);
-
+            
             try
             {
                 var response = await _mediator.Send(command, cancellationToken);
@@ -133,13 +134,13 @@ namespace Ambev.Test.PedroBono.WebApi.Feature.Users
             {
                 var response = await _mediator.Send(command, cancellationToken);
 
-                var test = _mapper.Map<PaginatedList<GetUserResponse>>(response);
+                var mappedResponse = _mapper.Map<PaginatedList<GetUserResponse>>(response);
 
                 return Ok(new ApiResponseWithData<PaginatedList<GetUserResponse>>
                 {
                     Success = true,
                     Message = "User's retrieved successfully",
-                    Data = test
+                    Data = mappedResponse
                 });
 
             }
@@ -171,11 +172,16 @@ namespace Ambev.Test.PedroBono.WebApi.Feature.Users
             var command = _mapper.Map<UpdateUserCommand>(request);
             var response = await _mediator.Send(command, cancellationToken);
 
+            var data = _mapper.Map<UpdateUserResponse>(response);
+
+            //Forced, because in tests the object always came null, but the mapper it is there
+            data.Address = _mapper.Map<CreateAddressResponse>(response.Address);
+
             return Ok(new ApiResponseWithData<UpdateUserResponse>
             {
                 Success = true,
                 Message = "User updated successfully",
-                Data = _mapper.Map<UpdateUserResponse>(response)
+                Data = data
             });
         }
 

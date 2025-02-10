@@ -16,7 +16,8 @@ namespace Ambev.Test.PedroBono.WebApi.Feature.Users.DeleteUser
         public DeleteUserProfile()
         {
             CreateMap<DeleteUserRequest, DeleteUserCommand>();
-            CreateMap<DeleteUserResult, DeleteUserResponse>();
+            CreateMap<DeleteUserResult, DeleteUserResponse>()
+                .ForMember(response => response.Address, opt => opt.MapFrom(result => result.Address));
 
         }
     }

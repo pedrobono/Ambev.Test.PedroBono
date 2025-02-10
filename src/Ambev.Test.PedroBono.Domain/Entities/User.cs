@@ -89,6 +89,11 @@ namespace Ambev.Test.PedroBono.Domain.Entities
         string IUser.Status => Status.ToString();
 
         /// <summary>
+        /// Gets or sets the associated address who is linked to the user.
+        /// </summary>
+        public Address Address { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the User class.
         /// </summary>
         public User()

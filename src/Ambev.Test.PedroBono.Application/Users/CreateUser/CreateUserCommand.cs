@@ -1,4 +1,5 @@
-﻿using Ambev.Test.PedroBono.Common.Validation;
+﻿using Ambev.Test.PedroBono.Application.Users.CreateAddress;
+using Ambev.Test.PedroBono.Common.Validation;
 using Ambev.Test.PedroBono.Domain.Enums;
 using MediatR;
 using System;
@@ -64,6 +65,11 @@ namespace Ambev.Test.PedroBono.Application.Users.CreateUser
         /// Gets or sets the role of the user.
         /// </summary>
         public UserRole Role { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Adress.
+        /// </summary>
+        public CreateAddressCommand Address { get; set; } = new CreateAddressCommand();
 
 
         public ValidationResultDetail Validate()

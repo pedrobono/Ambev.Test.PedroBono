@@ -48,7 +48,7 @@ namespace Ambev.Test.PedroBono.ORM.Repository
         /// <returns>The user if found, null otherwise</returns>
         public async Task<User?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
         {
-            return await _context.Users.FirstOrDefaultAsync(o => o.Id == id, cancellationToken);
+            return await _context.Users.Include(x => x.Address).FirstOrDefaultAsync(o => o.Id == id, cancellationToken);
         }
 
         /// <summary>
@@ -80,14 +80,27 @@ namespace Ambev.Test.PedroBono.ORM.Repository
             return true;
         }
 
+        /// <summary>
+        /// Updates an existing user in the database.
+        /// </summary>
+        /// <param name="user">The user object containing updated values.</param>
+        /// <param name="cancellationToken">A cancellation token to propagate notification that the operation should be canceled.</param>
+        /// <returns>The updated user object after saving changes to the database.</returns>
         public async Task<User> UpdateAsync(User user, CancellationToken cancellationToken = default)
         {
             _context.ChangeTracker.Clear();
+            user.UpdatedAt = DateTime.UtcNow;
             _context.Users.Update(user);
             await _context.SaveChangesAsync(cancellationToken);
             return user;
         }
 
+        /// <summary>
+        /// Retrieves a paginated list of users from the database based on specified filtering and ordering conditions.
+        /// </summary>
+        /// <param name="request">An object containing pagination and filtering parameters.</param>
+        /// <param name="cancellationToken">A cancellation token to propagate notification that the operation should be canceled.</param>
+        /// <returns>A paginated result containing a list of users and total count, or null if no users are found.</returns>
         public async Task<PaginatedResult<User>?> ListPaginatedAsync(PaginedFilter request, CancellationToken cancellationToken)
         {
             var count = await _context.Users.CountAsync(cancellationToken);
@@ -116,10 +129,16 @@ namespace Ambev.Test.PedroBono.ORM.Repository
                 qtyConditions++;
             }
 
-            var items = await usersQueryable.Skip((request.Page - 1) * request.Size).Take(request.Size).ToListAsync();
+
+            var items = await usersQueryable.Skip((request.Page - 1) * request.Size).Take(request.Size).Include(x => x.Address).ToListAsync();
             return new PaginatedResult<User>(items, count, request.Page, request.Size);
         }
 
+        /// <summary>
+        /// Constructs a key selector expression based on the given field name for sorting users.
+        /// </summary>
+        /// <param name="field">The field name to use for sorting users.</param>
+        /// <returns>A lambda expression representing the key selector for the specified field.</returns>
         private static Expression<Func<User, object>> GetKeySelector(string field) => field.ToLower().Trim() switch
         {
             "username" => user => user.Username,

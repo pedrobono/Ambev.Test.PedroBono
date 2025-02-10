@@ -16,7 +16,8 @@ namespace Ambev.Test.PedroBono.WebApi.Feature.Users.GetUser
         public GetUserProfile()
         {
             CreateMap<GetUserRequest, GetUserCommand>();
-            CreateMap<GetUserResult, GetUserResponse>();
+            CreateMap<GetUserResult, GetUserResponse>()
+                .ForMember(response => response.Address, opt => opt.MapFrom(result => result.Address));
 
         }
     }
