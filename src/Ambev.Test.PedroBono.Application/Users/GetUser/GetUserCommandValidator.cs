@@ -5,17 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ambev.Test.PedroBono.Application.Users.DeleteUser
+namespace Ambev.Test.PedroBono.Application.Users.GetUser
 {
     /// <summary>
-    /// Validator for DeleteUserCommand
+    /// Validator for GetUserCommand
     /// </summary>
-    public class DeleteUserValidator : AbstractValidator<DeleteUserCommand>
+    public class GetUserCommandValidator : AbstractValidator<GetUserCommand>
     {
         /// <summary>
-        /// Initializes validation rules for DeleteUserCommand
+        /// Initializes validation rules for GetUserCommand
         /// </summary>
-        public DeleteUserValidator()
+        public GetUserCommandValidator()
         {
             RuleFor(x => x.Id)
                 .NotEmpty()

@@ -32,7 +32,7 @@ namespace Ambev.Test.PedroBono.Application.Users.GetUser
         /// <returns>The user details if found</returns>
         public async Task<GetUserResult> Handle(GetUserCommand request, CancellationToken cancellationToken)
         {
-            var validator = new GetUserValidator();
+            var validator = new GetUserCommandValidator();
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
             if (!validationResult.IsValid)
