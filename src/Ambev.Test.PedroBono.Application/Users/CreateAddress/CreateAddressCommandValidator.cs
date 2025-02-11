@@ -26,13 +26,13 @@ namespace Ambev.Test.PedroBono.Application.Users.CreateAddress
     /// - **Latitude**: Optional, but if provided, it cannot exceed 13 characters.
     /// - **Longitude**: Optional, but if provided, it cannot exceed 13 characters.
     /// </remarks>
-    public class CreateAddressValidator : AbstractValidator<CreateAddressCommand>
+    public class CreateAddressCommandValidator : AbstractValidator<CreateAddressCommand>
     {
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateAddressValidator"/> with defined validation rules.
+        /// Initializes a new instance of the <see cref="CreateAddressCommandValidator"/> with defined validation rules.
         /// </summary>
-        public CreateAddressValidator()
+        public CreateAddressCommandValidator()
         {
             RuleFor(address => address.City)
                 .NotEmpty().WithMessage("City name cannot be blank")

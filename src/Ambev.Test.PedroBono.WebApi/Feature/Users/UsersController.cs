@@ -111,7 +111,7 @@ namespace Ambev.Test.PedroBono.WebApi.Feature.Users
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>The user details if found</returns>
         [HttpGet("")]
-        [ProducesResponseType(typeof(ApiResponseWithData<GetUserResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponseWithData<PaginatedResponse<GetUserResponse>>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> ListUser(CancellationToken cancellationToken, int? _page = 1, int? _size = 10, string _order = "id asc")
@@ -134,9 +134,9 @@ namespace Ambev.Test.PedroBono.WebApi.Feature.Users
             {
                 var response = await _mediator.Send(command, cancellationToken);
 
-                var mappedResponse = _mapper.Map<PaginatedList<GetUserResponse>>(response);
+                var mappedResponse = _mapper.Map<PaginatedResponse<GetUserResponse>>(response);
 
-                return Ok(new ApiResponseWithData<PaginatedList<GetUserResponse>>
+                return Ok(new ApiResponseWithData<PaginatedResponse<GetUserResponse>>
                 {
                     Success = true,
                     Message = "User's retrieved successfully",

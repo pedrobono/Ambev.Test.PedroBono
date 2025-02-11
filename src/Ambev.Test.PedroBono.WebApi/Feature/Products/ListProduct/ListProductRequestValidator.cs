@@ -1,18 +1,17 @@
-﻿using Ambev.Test.PedroBono.WebApi.Feature.Users.GetUser;
-using FluentValidation;
+﻿using FluentValidation;
 
-namespace Ambev.Test.PedroBono.WebApi.Feature.Users.ListUser
+namespace Ambev.Test.PedroBono.WebApi.Feature.Products.ListProduct
 {
 
     /// <summary>
-    /// Validator for ListUserRequest
+    /// Validator for ListProductRequest
     /// </summary>
-    public class ListUserRequestValidator : AbstractValidator<ListUserRequest>
+    public class ListProductRequestValidator : AbstractValidator<ListProductRequest>
     {
         /// <summary>
-        /// Initializes validation rules for ListUserRequest
+        /// Initializes validation rules for ListProductRequest
         /// </summary>
-        public ListUserRequestValidator()
+        public ListProductRequestValidator()
         {
             RuleFor(x => x.Order)
                 .NotNull().NotEmpty().MinimumLength(3)

@@ -34,7 +34,7 @@ namespace Ambev.Test.PedroBono.Application.Users.ListUser
         /// <returns>The list of user details if found</returns>
         public async Task<ListUserResult> Handle(ListUserCommand request, CancellationToken cancellationToken)
         {
-            var validator = new ListUserValidator();
+            var validator = new ListUserCommandValidator();
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
             if (!validationResult.IsValid)

@@ -32,7 +32,7 @@ namespace Ambev.Test.PedroBono.Application.Users.DeleteUser
         /// <returns>The user details if found</returns>
         public async Task<DeleteUserResult> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
         {
-            var validator = new DeleteUserValidator();
+            var validator = new DeleteUserCommandValidator();
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
             if (!validationResult.IsValid)

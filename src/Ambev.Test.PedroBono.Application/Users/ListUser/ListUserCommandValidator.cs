@@ -5,12 +5,12 @@ namespace Ambev.Test.PedroBono.Application.Users.ListUser
     /// <summary>
     /// Validator for ListUserCommand
     /// </summary>
-    public class ListUserValidator : AbstractValidator<ListUserCommand>
+    public class ListUserCommandValidator : AbstractValidator<ListUserCommand>
     {
         /// <summary>
         /// Initializes validation rules for ListUserCommand
         /// </summary>
-        public ListUserValidator()
+        public ListUserCommandValidator()
         {
             RuleFor(x => x.Order)
                 .NotNull().NotEmpty()
@@ -33,7 +33,7 @@ namespace Ambev.Test.PedroBono.Application.Users.ListUser
 
             RuleFor(x => x.Page)
                 .NotNull().GreaterThan(0)
-                .WithMessage("Size is required");
+                .WithMessage("Page is required");
         }
     }
 }
