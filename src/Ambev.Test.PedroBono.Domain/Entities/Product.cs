@@ -52,6 +52,11 @@ namespace Ambev.Test.PedroBono.Domain.Entities
         public int Count { get; set; } = 0;
 
         /// <summary>
+        /// Gets or sets the Carts associated with this Product.
+        /// </summary>
+        public ICollection<CartProduct> CartProducts { get; set; }
+
+        /// <summary>
         /// Gets the date and time when the product was created.
         /// </summary>
         public DateTime CreatedAt { get; set; }

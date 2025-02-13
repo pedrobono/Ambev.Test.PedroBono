@@ -19,6 +19,8 @@ namespace Ambev.Test.PedroBono.IoC.ModuleInitializers
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IAddressRepository, AddressRepository>();
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped<ICartProductRepository, CartProductRepository>();
+            builder.Services.AddScoped<ICartRepository, CartRepository>();
         }
     }
 }

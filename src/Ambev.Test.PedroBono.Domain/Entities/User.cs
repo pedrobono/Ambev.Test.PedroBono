@@ -93,6 +93,12 @@ namespace Ambev.Test.PedroBono.Domain.Entities
         /// </summary>
         public Address Address { get; set; }
 
+
+        /// <summary>
+        /// Gets or sets the associated address who is linked to the user.
+        /// </summary>
+        public ICollection<Cart> Carts { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the User class.
         /// </summary>
