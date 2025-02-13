@@ -1,5 +1,4 @@
-﻿using Ambev.Test.PedroBono.Domain.Entities;
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace Ambev.Test.PedroBono.WebApi.Feature.Products.CreateProduct
 {
