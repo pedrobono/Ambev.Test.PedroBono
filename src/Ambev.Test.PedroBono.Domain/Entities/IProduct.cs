@@ -6,6 +6,11 @@
     public interface IProduct
     {
         /// <summary>
+        /// Gets or stes the id of the entity
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
         /// Gets or sets the title of the product.
         /// </summary>
         string Title { get; set; }

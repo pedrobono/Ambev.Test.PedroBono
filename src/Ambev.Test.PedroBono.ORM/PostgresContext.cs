@@ -13,6 +13,8 @@ namespace Ambev.Test.PedroBono.ORM
         public DbSet<Product> Products { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartProduct> CartProducts { get; set; }
+        public DbSet<Sale> Sales { get; set; }
+        public DbSet<SaleProduct> SaleProducts { get; set; }
 
         public PostgresContext(DbContextOptions<PostgresContext> options) : base(options)
         {
