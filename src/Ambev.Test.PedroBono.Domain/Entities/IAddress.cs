@@ -6,6 +6,11 @@
     public interface IAddress
     {
         /// <summary>
+        /// Gets or stes the id of the entity
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
         /// Gets or sets the name of the city where the address is located.
         /// </summary>
         string City { get; set; }

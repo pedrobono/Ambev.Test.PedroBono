@@ -13,7 +13,7 @@ namespace Ambev.Test.PedroBono.Domain.Entities
     /// Represents a product added to a shopping cart in an e-commerce system.
     /// This class contains information about the product, the cart, and the quantity of the product in the cart.
     /// </summary>
-    public class CartProduct : BaseEntity, ICardProduct
+    public class CartProduct : BaseEntity, ICartProduct
     {
         /// <summary>
         /// Gets or sets the product associated with this cart item.

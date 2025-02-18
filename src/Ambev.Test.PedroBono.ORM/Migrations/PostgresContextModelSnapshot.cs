@@ -176,6 +176,77 @@ namespace Ambev.Test.PedroBono.ORM.Migrations
                     b.ToTable("Products", (string)null);
                 });
 
+            modelBuilder.Entity("Ambev.Test.PedroBono.Domain.Entities.Sale", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("Date")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Sales", (string)null);
+                });
+
+            modelBuilder.Entity("Ambev.Test.PedroBono.Domain.Entities.SaleProduct", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Discount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0);
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Qty")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SaleId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("SaleId");
+
+                    b.ToTable("SaleProducts", (string)null);
+                });
+
             modelBuilder.Entity("Ambev.Test.PedroBono.Domain.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -274,6 +345,44 @@ namespace Ambev.Test.PedroBono.ORM.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("Ambev.Test.PedroBono.Domain.Entities.Sale", b =>
+                {
+                    b.HasOne("Ambev.Test.PedroBono.Domain.Entities.User", "Customer")
+                        .WithMany("SalesAsCustomer")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Ambev.Test.PedroBono.Domain.Entities.User", "User")
+                        .WithMany("SalesAsCreator")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Ambev.Test.PedroBono.Domain.Entities.SaleProduct", b =>
+                {
+                    b.HasOne("Ambev.Test.PedroBono.Domain.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Ambev.Test.PedroBono.Domain.Entities.Sale", "Sale")
+                        .WithMany("Products")
+                        .HasForeignKey("SaleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Sale");
+                });
+
             modelBuilder.Entity("Ambev.Test.PedroBono.Domain.Entities.Cart", b =>
                 {
                     b.Navigation("CartProducts");
@@ -284,12 +393,21 @@ namespace Ambev.Test.PedroBono.ORM.Migrations
                     b.Navigation("CartProducts");
                 });
 
+            modelBuilder.Entity("Ambev.Test.PedroBono.Domain.Entities.Sale", b =>
+                {
+                    b.Navigation("Products");
+                });
+
             modelBuilder.Entity("Ambev.Test.PedroBono.Domain.Entities.User", b =>
                 {
                     b.Navigation("Address")
                         .IsRequired();
 
                     b.Navigation("Carts");
+
+                    b.Navigation("SalesAsCreator");
+
+                    b.Navigation("SalesAsCustomer");
                 });
 #pragma warning restore 612, 618
         }
